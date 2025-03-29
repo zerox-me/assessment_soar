@@ -1,6 +1,8 @@
-import React, { Suspense, lazy } from 'react';
+import axios from "axios";
+import React, { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
+import "./mock/mock";
 
 // Lazy load all route components
 const Home = lazy(() => import('./pages/Home'));
@@ -21,6 +23,27 @@ const LoadingSpinner = () => (
 );
 
 function App() {
+   useEffect(() => {
+    let isMounted = true;
+
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get("/api/user");
+        if (isMounted) {
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+
+    fetchUser();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <Router>
       <Layout>
