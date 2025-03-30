@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { MdSearch, MdOutlineSettings, MdNotificationsNone, MdMenu, MdPersonOutline } from 'react-icons/md';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { UserContext } from '../../context/context';
 
 interface HeaderProps {
@@ -68,9 +68,11 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
 
             {/* Icons */}
             <div className="flex items-center space-x-4">
-              <button className="p-3 rounded-full bg-label-icon flex items-center justify-center hover:bg-gray-100 transition-colors">
-                <MdOutlineSettings size={24} className="text-label-secondary" />
-              </button>
+              <Link to='/settings'>
+                <button className="p-3 rounded-full bg-label-icon flex items-center justify-center hover:bg-gray-100 transition-colors">
+                  <MdOutlineSettings size={24} className="text-label-secondary" />
+                </button>
+              </Link>
               <button className="p-3 rounded-full bg-label-icon flex items-center justify-center hover:bg-gray-100 transition-colors relative">
                 <MdNotificationsNone size={24} className="text-[#396AFF]" />
                 <span className="absolute top-3.5 right-3.5 w-2.5 h-2.5 rounded-full border border-[#396AFF] bg-label-icon border-2">
