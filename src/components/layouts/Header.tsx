@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { MdSearch, MdOutlineSettings, MdNotificationsNone, MdMenu, MdPersonOutline } from 'react-icons/md';
+import { MdSearch, MdOutlineSettings, MdNotificationsNone, MdMenu } from 'react-icons/md';
 import { Link, useLocation } from 'react-router-dom';
 import { UserContext } from '../../context/context';
 
