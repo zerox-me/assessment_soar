@@ -1,25 +1,54 @@
-import React from 'react';
+import { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from "react-query";
+import Layout from './components/layouts/Layout';
+import { UserProvider } from "./context/context";
+import "./mock/mock";
+
+// Lazy load all route components
+const Home = lazy(() => import('./pages/Home'));
+const Transactions = lazy(() => import('./pages/Transactions'));
+const Accounts = lazy(() => import('./pages/Accounts'));
+const Investments = lazy(() => import('./pages/Investments'));
+const CreditCards = lazy(() => import('./pages/CreditCards'));
+const Loans = lazy(() => import('./pages/Loans'));
+const Services = lazy(() => import('./pages/Services'));
+const Privileges = lazy(() => import('./pages/Privileges'));
+const Settings = lazy(() => import('./pages/Settings'));
+
+// Loading component
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+  </div>
+);
+
+// Create a QueryClient instance
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">
-            React + TypeScript + Tailwind CSS
-          </h1>
-        </div>
-      </header>
-      <main>
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div className="px-4 py-6 sm:px-0">
-            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 flex items-center justify-center">
-              <p className="text-gray-500 text-xl">Ready to start building!</p>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <UserProvider>
+        <Router>
+          <Layout>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/transactions" element={<Transactions />} />
+                <Route path="/accounts" element={<Accounts />} />
+                <Route path="/investments" element={<Investments />} />
+                <Route path="/credit-cards" element={<CreditCards />} />
+                <Route path="/loans" element={<Loans />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/privileges" element={<Privileges />} />
+                <Route path="/settings" element={<Settings />} />
+              </Routes>
+            </Suspense>
+          </Layout>
+        </Router>
+      </UserProvider>
+    </QueryClientProvider>
   );
 }
 
