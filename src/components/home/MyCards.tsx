@@ -3,6 +3,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import "../../mock/mock";
 import { CardData } from "../../mock/types";
+import { Carousel, CarouselContent, CarouselItem } from "../common/carousel";
 
 
 const Card: React.FC<CardData> = ({
@@ -20,7 +21,7 @@ const Card: React.FC<CardData> = ({
 
   return (
     <div
-      className={`${bgColorClass} rounded-3xl relative overflow-hidden cursor-pointer hover:shadow-2xl transition-shadow duration-500`}
+      className={`${bgColorClass} rounded-3xl relative overflow-hidden cursor-pointer`}
     >
       <div className="p-6">
         <div className="flex justify-between items-start mb-8">
@@ -74,7 +75,7 @@ const Card: React.FC<CardData> = ({
         } px-6 py-5 flex justify-between`}
       >
         <p className={`${textColorClass} font-medium text-xl tracking-wider`}>
-          {cardNumber}
+          {cardNumber.slice(0, 4)} **** **** {cardNumber.slice(12, 16)}
         </p>
         <div className="relative">
           <div
@@ -111,13 +112,20 @@ const MyCards: React.FC = () => {
   if (status === "error") return <div>Error...</div>;
 
   return (
-    <div className="relative">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {cards?.data.map((card: CardData, index: number) => (
-          <Card key={index} {...card} />
-        ))}
-      </div>
-    </div>
+    <Carousel opts={{
+      loop: true,
+      align: "start",
+    }}>
+      <CarouselContent>
+        {
+          cards?.data.map((card: CardData, index: number) => (
+            <CarouselItem className="basis-1/2" key={index}>
+              <Card {...card} />
+            </CarouselItem>
+          ))
+        }
+      </CarouselContent>
+    </Carousel>
   );
 };
 

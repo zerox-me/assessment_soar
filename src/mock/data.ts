@@ -60,6 +60,30 @@ export const mock_transactions: Transaction[] = [
     amount: 5400,
     type: TransactionType.Deposit,
   },
+  {
+    id: 'id-4',
+    method: TransactionMethod.Card,
+    title: "Deposit from my Card",
+    date: "28 January 2021",
+    amount: 850,
+    type: TransactionType.Withdraw,
+  },
+  {
+    id: 'id-5',
+    method: TransactionMethod.Paypal,
+    title: "Deposit Paypal",
+    date: "25 January 2021",
+    amount: 2500,
+    type: TransactionType.Deposit,
+  },
+  {
+    id: 'id-6',
+    method: TransactionMethod.Cash,
+    title: "Jemi Wilson",
+    date: "21 January 2021",
+    amount: 5400,
+    type: TransactionType.Deposit,
+  },
 ];
 
 export const mock_contacts: Contact[] = [

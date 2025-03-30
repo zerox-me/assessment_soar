@@ -1,5 +1,4 @@
-import axios from "axios";
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from "react-query";
 import Layout from './components/layouts/Layout';
@@ -27,27 +26,6 @@ const LoadingSpinner = () => (
 const queryClient = new QueryClient();
 
 function App() {
-   useEffect(() => {
-    let isMounted = true;
-
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get("/api/user");
-        if (isMounted) {
-          console.log(response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
-
-    fetchUser();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
