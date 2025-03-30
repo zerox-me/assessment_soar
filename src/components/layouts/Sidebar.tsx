@@ -118,7 +118,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               {navItems.map((item, index) => renderNavItem(item, index))}
             </ul>
             {/* Black line indicator */}
-            <div className={`absolute left-0 w-[8px] h-14 bg-label-primary transition-all duration-300 ease-in-out rounded-r-lg`}
+            <div className={`absolute left-0 w-1 h-14 bg-label-primary transition-all duration-300 ease-in-out rounded-r-lg`}
               style={{top: `${(hoveredIndex ?? 0) * 56}px`}}
               />
           </div>
