@@ -1,12 +1,15 @@
-import React from 'react';
-import { MdSearch, MdOutlineSettings, MdNotificationsNone, MdMenu } from 'react-icons/md';
+import React, { useContext } from 'react';
+import { MdSearch, MdOutlineSettings, MdNotificationsNone, MdMenu, MdPersonOutline } from 'react-icons/md';
 import { useLocation } from 'react-router-dom';
+import { UserContext } from '../../context/context';
 
 interface HeaderProps {
   onMenuClick: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
+  const { userInfo } = useContext(UserContext);
+  
   const location = useLocation();
   const pageTitle = location.pathname === '/' ? 'Overview' : 
     location.pathname.slice(1).split('-').map(word => 
@@ -21,13 +24,13 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
         <div className="h-16 flex items-center justify-between px-4">
           <button 
             onClick={onMenuClick}
-            className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center hover:bg-gray-100 transition-colors"
+            className="w-10 h-10 rounded-full bg-label-icon flex items-center justify-center hover:bg-gray-100 transition-colors"
           >
             <MdMenu size={24} className="text-gray-600" />
           </button>
-          <h1 className="text-xl font-semibold text-[#343C6A]">{pageTitle}</h1>
+          <h1 className="text-xl font-semibold text-label-title">{pageTitle}</h1>
           <div className='w-[50px]'>
-            <button className="p-0 rounded-full bg-[#F5F7FA] flex items-center justify-center hover:opacity-80 duration-300">
+            <button className="p-0 rounded-full bg-label-icon flex items-center justify-center hover:opacity-80 duration-300">
               <img src='/images/avatar.png' alt='avatar' className='w-[50px] h-[50px] rounded-full' />
             </button>
           </div>
@@ -38,9 +41,9 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
             <input
               type="text"
               placeholder="Search for something"
-              className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:border-gray-300 bg-[#F5F7FA] placeholder-[#8BA3CB]"
+              className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300/0 focus:outline-none focus:border-gray-300 bg-label-icon placeholder-input-placeholder"
             />
-            <MdSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#8BA3CB]" size={20} />
+            <MdSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-input-secondary" size={20} />
           </div>
         </div>
       </div>
@@ -49,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
       <div className="hidden md:flex items-center md:p-6 px-6 py-2">
         <div className="flex items-center justify-between w-full">
           {/* Left side - Page Title */}
-          <h1 className="text-2xl font-semibold text-[#343C6A]">{pageTitle}</h1>
+          <h1 className="text-2xl font-semibold text-label-title">{pageTitle}</h1>
 
           {/* Right side - Search and Icons */}
           <div className="flex items-center space-x-6">
@@ -58,24 +61,30 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
               <input
                 type="text"
                 placeholder="Search for something"
-                className="w-64 pl-10 pr-4 py-3 rounded-full focus:border focus:outline-none focus:border-gray-300 bg-[#F5F7FA] placeholder-[#8BA3CB]"
+                className="w-64 pl-10 pr-4 py-3 rounded-full border border-gray-300/0 focus:outline-none focus:border-gray-300 bg-label-icon placeholder-input-placeholder"
               />
-              <MdSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#8BA3CB]" size={20} />
+              <MdSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-label-secondary" size={20} />
             </div>
 
             {/* Icons */}
             <div className="flex items-center space-x-4">
-              <button className="p-3 rounded-full bg-[#F5F7FA] flex items-center justify-center hover:bg-gray-100 transition-colors">
-                <MdOutlineSettings size={26} className="text-[#718EBF]" />
+              <button className="p-3 rounded-full bg-label-icon flex items-center justify-center hover:bg-gray-100 transition-colors">
+                <MdOutlineSettings size={24} className="text-label-secondary" />
               </button>
-              <button className="p-3 rounded-full bg-[#F5F7FA] flex items-center justify-center hover:bg-gray-100 transition-colors relative">
-                <MdNotificationsNone size={26} className="text-[#396AFF]" />
-                <span className="absolute top-3.5 right-3.5 w-2.5 h-2.5 rounded-full border border-[#396AFF] bg-[#F5F7FA] border-2">
+              <button className="p-3 rounded-full bg-label-icon flex items-center justify-center hover:bg-gray-100 transition-colors relative">
+                <MdNotificationsNone size={24} className="text-[#396AFF]" />
+                <span className="absolute top-3.5 right-3.5 w-2.5 h-2.5 rounded-full border border-[#396AFF] bg-label-icon border-2">
                 </span>
               </button>
-              <div className='w-[50px]'>
-                <button className="p-0 rounded-full bg-[#F5F7FA] flex items-center justify-center hover:opacity-80 duration-300">
-                  <img src='/images/avatar.png' alt='avatar' className='w-[50px] h-[50px] rounded-full' />
+              <div className='w-12'>
+                <button className="p-0 rounded-full bg-label-icon flex items-center justify-center hover:opacity-80 duration-300">
+                  {userInfo.avatar ? (
+                    <img src={userInfo.avatar} alt='avatar' className='w-12 h-12 rounded-full' />
+                  ) : (
+                    <div className='p-3 rounded-full bg-label-icon flex items-center justify-center hover:bg-gray-100 transition-colors relative'>
+                      <MdPersonOutline size={24} className="text-label-secondary" />
+                    </div>
+                  )}
                 </button>
               </div>
             </div>

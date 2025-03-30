@@ -36,10 +36,10 @@ const TransactionItem: React.FC<Transaction> = ({
           <img src={`/images/${iconName[method]}.svg`} alt={method} />
         </div>
         <div className="ml-3">
-          <p className="text-[#2D2D3F] font-medium cursor-pointer hover:text-[#2D2D3F]/60 transition-colors duration-300">
+          <p className="text-label-primary font-medium cursor-pointer hover:text-label-primary/60 transition-colors duration-300">
             {title}
           </p>
-          <p className="text-sm text-[#9199AF]">{date}</p>
+          <p className="text-sm text-label-secondary">{date}</p>
         </div>
       </div>
       <div
@@ -87,7 +87,7 @@ const RecentTransactions: React.FC = () => {
 
   return (
     <div className="bg-white rounded-3xl p-6">
-      <ScrollArea className="h-[190px]">
+      <ScrollArea className="h-48">
         <div className="flex flex-col gap-y-2">
           {transactions?.data.map((transaction: Transaction) => (
             <TransactionItem key={transaction.id} {...transaction} />
