@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   MdHome,
@@ -42,6 +42,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const activeNavIndex = navItems.findIndex(item => item.path === location.pathname);
   const [hoveredIndex, setHoveredIndex] = useState<number>(activeNavIndex);
+
+  useEffect(() => {
+    setHoveredIndex(activeNavIndex);
+  }, [activeNavIndex]);
 
   const handleNavigation = (path: string) => {
     navigate(path);

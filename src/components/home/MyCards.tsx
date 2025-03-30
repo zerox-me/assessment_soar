@@ -119,7 +119,7 @@ const MyCards: React.FC = () => {
       <CarouselContent>
         {
           cards?.data.map((card: CardData, index: number) => (
-            <CarouselItem className="basis-1/2" key={index}>
+            <CarouselItem className="lg:basis-1/2" key={index}>
               <Card {...card} />
             </CarouselItem>
           ))
