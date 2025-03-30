@@ -1,46 +1,127 @@
-# Getting Started with Create React App
+# Soar Task - Financial Management Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a user-friendly financial management dashboard application that allows users to manage various financial information including transactions, account details, investments, credit cards, and loans in one place. The application should have responsive design and functionality as shown in the provided [Figma Link](https://www.figma.com/design/Lf57jfEvFsQjNZdQi07qyv/Soar-Front-End-Dev-Task?node-id=0-1&t=Peh4DOcavX88B4up-1).
 
-## Available Scripts
+## Key Features
 
-In the project directory, you can run:
+- 📊 Dashboard: Summary of key financial information
+- 💳 Transaction Management
+- 🏦 Account Information
+- 📈 Investment Portfolio Management
+- 💳 Credit Card Management
+- 💰 Loan Information
+- 🛠️ Financial Services
+- 👑 Privileges Management
+- ⚙️ Settings
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Framework**: React 18
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: React Context API
+- **Charts**: Chart.js
+- **Routing**: React Router DOM
+- **UI Components**: 
+  - Radix UI
+  - Lucide React
+  - React Icons
+- **HTTP Client**: Axios
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Implemented Features
 
-### `npm test`
+### Loading States
+- **Skeleton Loading**: Implemented skeleton loading states for better user experience during data fetching
+  - Dashboard cards
+  - Transaction lists
+  - Account information
+  - Investment portfolio
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Mock API
+- **Axios Mock Adapter**: 
+  - Simulated API endpoints for development
+  - Mock data for all major features
+  - Configurable response delays
+  - Error simulation capabilities
 
-### `npm run build`
+### UI Components
+- **Carousel Implementation**:
+  - Shadcn/UI Carousel component integration
+  - Smooth animations and transitions
+  - Touch-friendly swipe gestures
+  - Responsive design for all screen sizes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### State Management
+- **Context API**:
+  - User preferences
+  - User avatar on Header components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
 
-### `npm run eject`
+- Node.js 16.0.0 or higher
+- npm 7.0.0 or higher
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Installation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+# Clone the project
+git clone [https://github.com/zerox-me/assessment_soar.git]
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Navigate to project directory
+cd assessment_soar
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Install dependencies
+npm install
+```
 
-## Learn More
+### Development Server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The development server will run at [http://localhost:3000](http://localhost:3000).
+
+### Production Build
+
+```bash
+npm run build
+```
+
+### Running Tests
+
+```bash
+npm test
+```
+
+## Docker Support
+
+You can run the application using Docker:
+
+```bash
+# Build Docker image
+docker build -t soar-task .
+
+# Run with Docker Compose
+docker-compose up
+```
+
+The development server will run at [http://localhost](http://localhost).
+
+
+## Project Structure
+
+```
+src/
+├── components
+      ├──common         # Reusable components
+      ├──layouts        # Layout components
+      ├──home           # Components used in Home page
+      ├──lib            # Components for ShadCN/UI
+      ├──settings       # Components used in Settings page
+├── context/            # User context and provider
+├── mock/               # Mock endpoints, types and mock data
+├── pages/              # Page components
+```
