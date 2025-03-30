@@ -1,5 +1,5 @@
-# Use an official Node.js runtime as a parent image
-FROM node:22.1-alpine
+# Build stage
+FROM node:20-alpine as build
 
 # Set the working directory in the container
 WORKDIR /app
@@ -17,9 +17,17 @@ COPY . .
 # Build the React app for production
 RUN npm run build
 
-# Start the Nginx server
-RUN npm install -g serve
-CMD ["serve", "-s", "build"]
+# Production stage
+FROM nginx:latest
 
-# Expose port 3000
-EXPOSE 3000
+# Copy built assets from build stage
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Copy nginx configuration if you have custom config
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
