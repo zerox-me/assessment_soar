@@ -108,7 +108,7 @@ docker build -t soar-task .
 docker-compose up
 ```
 
-The development server will run at [http://localhost](http://localhost).
+The development server will run at [http://localhost:3000](http://localhost:3000).
 
 
 ## Project Structure
