@@ -9,7 +9,7 @@ interface FormErrors {
 
 const EditProfile: React.FC = () => {
   const { userInfo, updateUser } = useContext(UserContext);
-  const [avatar, setAvatar] = useState<string | null>(userInfo?.avatar);
+  const [avatar, setAvatar] = useState<string | null>(userInfo?.avatar ? userInfo.avatar : '/images/avatar.png');
   const [formData, setFormData] = useState<User>(userInfo);
   const [errors, setErrors] = useState<FormErrors>({});
   const fileInputRef = useRef<HTMLInputElement>(null);

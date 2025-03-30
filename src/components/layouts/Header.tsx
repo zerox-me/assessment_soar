@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
           <h1 className="text-xl font-semibold text-label-title">{pageTitle}</h1>
           <div className='w-[50px]'>
             <button className="p-0 rounded-full bg-label-icon flex items-center justify-center hover:opacity-80 duration-300">
-              <img src='/images/avatar.png' alt='avatar' className='w-[50px] h-[50px] rounded-full' />
+              <img src={!userInfo.avatar ? '/images/avatar.png' : userInfo.avatar} alt='avatar' className='w-[50px] h-[50px] rounded-full' />
             </button>
           </div>
         </div>
@@ -80,13 +80,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
               </button>
               <div className='w-12'>
                 <button className="p-0 rounded-full bg-label-icon flex items-center justify-center hover:opacity-80 duration-300">
-                  {userInfo.avatar ? (
-                    <img src={userInfo.avatar} alt='avatar' className='w-12 h-12 rounded-full' />
-                  ) : (
-                    <div className='p-3 rounded-full bg-label-icon flex items-center justify-center hover:bg-gray-100 transition-colors relative'>
-                      <MdPersonOutline size={24} className="text-label-secondary" />
-                    </div>
-                  )}
+                  <img src={!userInfo.avatar ? '/images/avatar.png' : userInfo.avatar} alt='avatar' className='w-12 h-12 rounded-full' />
                 </button>
               </div>
             </div>
