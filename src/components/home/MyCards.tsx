@@ -7,7 +7,6 @@ import { Carousel, CarouselContent, CarouselItem } from "../common/carousel";
 
 
 const Card: React.FC<CardData> = ({
-  id,
   balance,
   cardHolder,
   validThru,
@@ -16,8 +15,9 @@ const Card: React.FC<CardData> = ({
 }) => {
   const bgColorClass = isActive
     ? "bg-gradient-to-br from-[#5B5A6F] to-black"
-    : "bg-white border border-[#DFEAF2]";
-  const textColorClass = isActive ? "text-white" : "text-[#2D2D3F]";
+    : "bg-white border border-input-border";
+  const labelColorClass = isActive ? "text-white" : "text-label-secondary";
+  const textColorClass = isActive ? "text-white" : "text-label-title";
 
   return (
     <div
@@ -26,7 +26,7 @@ const Card: React.FC<CardData> = ({
       <div className="p-6">
         <div className="flex justify-between items-start mb-8">
           <div>
-            <p className={`${textColorClass} text-xs`}>Balance</p>
+            <p className={`${labelColorClass} text-xs`}>Balance</p>
             <p className={`${textColorClass} text-xl font-semibold`}>
               ${balance.toLocaleString()}
             </p>
@@ -47,7 +47,7 @@ const Card: React.FC<CardData> = ({
           <div>
             <p
               className={`${
-                isActive ? "text-white/70" : textColorClass
+                isActive ? "text-white/70" : labelColorClass
               } text-xs`}
             >
               CARD HOLDER
@@ -58,7 +58,7 @@ const Card: React.FC<CardData> = ({
           <div>
             <p
               className={`${
-                isActive ? "text-white/70" : textColorClass
+                isActive ? "text-white/70" : labelColorClass
               } text-xs`}
             >
               VALID THRU
@@ -71,7 +71,7 @@ const Card: React.FC<CardData> = ({
         className={`${
           isActive
             ? "bg-gradient-to-b from-white/15 to-transparent"
-            : "border-t border-[#DFEAF2]"
+            : "border-t border-input-border"
         } px-6 py-5 flex justify-between`}
       >
         <p className={`${textColorClass} font-medium text-xl tracking-wider`}>
@@ -79,12 +79,12 @@ const Card: React.FC<CardData> = ({
         </p>
         <div className="relative">
           <div
-            className={`w-[30px] h-[30px] rounded-full ${
+            className={`w-8 h-8 rounded-full ${
               isActive ? "bg-white" : "bg-[#9199AF]"
-            } opacity-50 absolute right-[15px]`}
+            } opacity-50 absolute right-4`}
           ></div>
           <div
-            className={`w-[30px] h-[30px] rounded-full ${
+            className={`w-8 h-8 rounded-full ${
               isActive ? "bg-white" : "bg-[#9199AF]"
             } opacity-50`}
           ></div>

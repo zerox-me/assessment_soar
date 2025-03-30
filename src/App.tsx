@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from "react-query";
 import Layout from './components/layouts/Layout';
+import { UserProvider } from "./context/context";
 import "./mock/mock";
 
 // Lazy load all route components
@@ -28,23 +29,25 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <Layout>
-          <Suspense fallback={<LoadingSpinner />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/transactions" element={<Transactions />} />
-            <Route path="/accounts" element={<Accounts />} />
-            <Route path="/investments" element={<Investments />} />
-            <Route path="/credit-cards" element={<CreditCards />} />
-            <Route path="/loans" element={<Loans />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/privileges" element={<Privileges />} />
-            <Route path="/settings" element={<Settings />} />
-          </Routes>
-        </Suspense>
-        </Layout>
-      </Router>
+      <UserProvider>
+        <Router>
+          <Layout>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/transactions" element={<Transactions />} />
+                <Route path="/accounts" element={<Accounts />} />
+                <Route path="/investments" element={<Investments />} />
+                <Route path="/credit-cards" element={<CreditCards />} />
+                <Route path="/loans" element={<Loans />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/privileges" element={<Privileges />} />
+                <Route path="/settings" element={<Settings />} />
+              </Routes>
+            </Suspense>
+          </Layout>
+        </Router>
+      </UserProvider>
     </QueryClientProvider>
   );
 }

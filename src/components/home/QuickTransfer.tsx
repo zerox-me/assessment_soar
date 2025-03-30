@@ -67,7 +67,7 @@ const QuickTransfer: React.FC = () => {
                 onClick={() => onHandleClickContact(contact.id)}
                 className="flex flex-col basis-1/3"
               >
-                <div className="flex flex-col items-center rounded-xl p-2 cursor-pointer hover:bg-[#F5F6FA] transition-colors duration-300">
+                <div className="flex flex-col items-center rounded-xl p-2 cursor-pointer hover:bg-label-icon transition-colors duration-300">
                   <div className="flex overflow-hidden w-16 h-16 mb-4 rounded-full">
                     <img
                       src={contact.avatar}
@@ -77,14 +77,14 @@ const QuickTransfer: React.FC = () => {
                   </div>
                   <div className="flex flex-col items-center">
                     <p
-                      className={`text-center truncate rounded-xl ${
+                      className={`text-center text-label-title truncate rounded-xl ${
                         selectedContact === contact.id ? "font-bold" : ""
                       }`}
                     >
                       {contact.name}
                     </p>
                     <p
-                      className={`text-center text-[#9199AF] truncate rounded-xl ${
+                      className={`text-center text-label-secondary truncate rounded-xl ${
                         selectedContact === contact.id ? "font-bold" : ""
                       }`}
                     >
@@ -95,20 +95,20 @@ const QuickTransfer: React.FC = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-0 w-[50px] h-[50px] bg-white border-none shadow-md disabled:opacity-100 disabled:text-gray-200 hover:shadow-xl transition-shadow duration-300" />
-          <CarouselNext className="right-0 w-[50px] h-[50px] bg-white border-none shadow-md disabled:opacity-100 disabled:text-gray-200 hover:shadow-xl transition-shadow duration-300" />
+          <CarouselPrevious className="left-0 w-12 h-12 bg-white border-none shadow-md disabled:opacity-100 disabled:text-gray-200 hover:shadow-xl transition-shadow duration-300" />
+          <CarouselNext className="right-0 w-12 h-12 bg-white border-none shadow-md disabled:opacity-100 disabled:text-gray-200 hover:shadow-xl transition-shadow duration-300" />
         </Carousel>
 
         <div className="flex justify-between items-center space-x-4">
-          <p className="text-[#2D2D3F]">Write Amount</p>
+          <p className="text-label-secondary pl-6">Write Amount</p>
           <div className="relative">
             <input
               value={amount}
               onChange={(e) => setAmount(+e.target.value)}
-              className="w-64 h-[50px] px-[30px] text-[#2D2D3F] bg-[#F5F6FA] rounded-full focus:outline-none focus:border focus:border-gray-300"
+              className="w-64 h-12 px-8 text-label-title bg-label-icon rounded-full focus:outline-none focus:border focus:border-gray-300"
             />
             <button
-              className="absolute top-0 right-0 flex items-center justify-center w-[125px] h-[50px] space-x-2 bg-[#232323] rounded-full hover:bg-[#232323]/80 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="absolute top-0 right-0 flex items-center justify-center w-32 h-12 space-x-2 bg-label-primary rounded-full hover:bg-label-primary/80 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={amount <= 0 || !selectedContact}
               onClick={() => onHandleSend()}
             >

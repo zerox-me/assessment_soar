@@ -33,3 +33,31 @@ export interface Contact {
   role: string;
   avatar: string;
 }
+
+export interface User {
+  avatar: string;
+  name: string;
+  email: string;
+  dateOfBirth: string;
+  permanentAddress: string;
+  postalCode: string;
+  username: string;
+  password: string;
+  presentAddress: string;
+  city: string;
+  country: string;
+}
+
+export const initialUserInfo: User = {
+  avatar: '',
+  name: '',
+  email: '',
+  dateOfBirth: '',
+  permanentAddress: '',
+  postalCode: '',
+  username: '',
+  password: '',
+  presentAddress: '',
+  city: '',
+  country: '',
+};

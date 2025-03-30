@@ -11,7 +11,7 @@ export const mock_cards: CardData[] = [
   },
   {
     id: "id-2",
-    balance: 123,
+    balance: 1263,
     cardHolder: "Roger Dale",
     validThru: "06/11",
     cardNumber: "147795823781234",
