@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from "react-query";
 import Layout from './components/layouts/Layout';
 import "./mock/mock";
 
@@ -21,6 +22,9 @@ const LoadingSpinner = () => (
     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
   </div>
 );
+
+// Create a QueryClient instance
+const queryClient = new QueryClient();
 
 function App() {
    useEffect(() => {
@@ -45,9 +49,10 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <Layout>
-        <Suspense fallback={<LoadingSpinner />}>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Layout>
+          <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/transactions" element={<Transactions />} />
@@ -60,8 +65,9 @@ function App() {
             <Route path="/settings" element={<Settings />} />
           </Routes>
         </Suspense>
-      </Layout>
-    </Router>
+        </Layout>
+      </Router>
+    </QueryClientProvider>
   );
 }
 
